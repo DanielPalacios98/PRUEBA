@@ -1,0 +1,24 @@
+<main class="page">
+  <header>
+    <p class="eyebrow">Cliente Angular · API MVC</p>
+    <h1>Catálogo de uniformes</h1>
+    <p>Productos obtenidos desde <code>GET /api/products</code>.</p>
+  </header>
+
+  @if (loading) {
+    <p class="message">Cargando productos…</p>
+  } @else if (error) {
+    <p class="message error">{{ error }}</p>
+  } @else {
+    <section class="grid" aria-label="Productos">
+      @for (product of products; track product.id) {
+        <article class="card">
+          <span class="tag">#{{ product.id }}</span>
+          <h2>{{ product.name }}</h2>
+          <p>{{ product.institution || 'Producto del catálogo' }}</p>
+          <strong>{{ product.price | currency }}</strong>
+        </article>
+      }
+    </section>
+  }
+</main>
